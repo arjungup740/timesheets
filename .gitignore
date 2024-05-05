@@ -1,4 +1,4 @@
 myenv
 .env
-.xlsx
-xlsx
+*xlsx
+.DS_Store

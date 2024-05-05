@@ -45,7 +45,7 @@ def get_secret():
     return secret
 
 secret = get_secret()
-print('type secret = ', type(secret))
+# print('type secret = ', type(secret))
 # print('secret = ', secret)
 
 # Load the workbook and select the active worksheet
@@ -126,15 +126,12 @@ except Exception as e:
 ###################### Steps
 """
 
-* aws secrets
-    AKIA6IPIM7JMQF3DZPGZ
-    ys0/TJAGeGXkw026vX2zqtthpQOY+opmOpTaPrbE
-* get it on git
+
+* change the secrets
 * containerize so it just always works?
 * run via lambda so that doesn't matter if your computer is on
 * ultimately could have some logic that checks which emails you sent previously
 * add some boto that pulls your costs
-
 
 
 Ultimate dream -- send email asking "did you work 40 hours this week?" if yes, then send email to BOI timesheets
