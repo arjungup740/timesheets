@@ -128,7 +128,7 @@ except Exception as e:
 
 
 * change the secrets
-* containerize so it just always works?
+
 * run via lambda so that doesn't matter if your computer is on
 * ultimately could have some logic that checks which emails you sent previously
 * add some boto that pulls your costs
@@ -140,6 +140,6 @@ if no, then send filled out timesheet and say "please modify"
 done
 1) figure out date logic -- handle if you send previous email or not.... or just default to being careful and only sending one for the previous week unless it's Friday late pm the previous week
     if it is friday afternoon, send for last week. If it is anytime before Friday afternoon, send for the previous week. If it is Monday or any other day really, send for 2 saturdays ago, because presumably you missed it
-
+* containerize so it just always works?
 
 """

@@ -11,11 +11,11 @@ from email import encoders
 
 def lambda_handler(event, context):
     # Load environment variables
-    aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
-    aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    # aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+    # aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
     # Retrieve secret from Secrets Manager
-    secret = get_secret(aws_access_key_id, aws_secret_access_key)
+    secret = get_secret()
     
     # Process Excel file
     file_path = 'Arjun-BOI-Timesheet-04_20_24.xlsx'
@@ -24,16 +24,11 @@ def lambda_handler(event, context):
     # Send email
     send_email(secret, final_file_path)
 
-def get_secret(aws_access_key_id, aws_secret_access_key):
+def get_secret():
     secret_name = "secondary_email_creds"
     region_name = "us-west-2"
 
-    # Create a Secrets Manager client
-    session = boto3.session.Session(
-        aws_access_key_id=aws_access_key_id,
-        aws_secret_access_key=aws_secret_access_key,
-    )
-    client = session.client(
+    client = boto3.client(
         service_name='secretsmanager',
         region_name=region_name
     )
@@ -61,7 +56,7 @@ def process_excel(file_path):
         saturday_to_use = most_recent_saturday - timedelta(weeks=1)
 
     sheet['B4'].value = saturday_to_use.strftime('%m/%d/%Y')
-    final_file_path = file_path.replace("04_20_24", saturday_to_use.strftime('%m_%d_%y'))
+    final_file_path = '/tmp/' + file_path.replace("04_20_24", saturday_to_use.strftime('%m_%d_%y'))
     workbook.save(final_file_path)
 
     return final_file_path

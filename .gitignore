@@ -2,3 +2,4 @@ myenv
 .env
 *xlsx
 .DS_Store
+*json
